@@ -29,19 +29,3 @@ REQUESTS_ROUTES = {
     'details': '/requests/<pid_value>',
 }
 """Invenio requests ui endpoints."""
-
-REQUESTS_FACETS = {
-    'type': {
-        'facet': facets.type,
-        'ui': {
-            'field': 'type',
-        }
-    },
-    'status': {
-        'facet': facets.status,
-        'ui': {
-            'field': 'status',
-        }
-    },
-}
-"""Invenio requests facets."""
