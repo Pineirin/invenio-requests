@@ -15,9 +15,13 @@ readme = open("README.rst").read()
 history = open("CHANGES.rst").read()
 
 tests_require = [
+    'Faker>=2.0.3',
     "black>=20.8b1",
     "invenio-app>=1.3.2",
     "pytest-invenio>=1.4.2",
+    "invenio-communities>=2.3.2",
+    "invenio-rdm-records>=0.34.3",
+    'invenio-vocabularies>=0.10.2,<0.11.0',
 ]
 
 records_resources_version = ">=0.18.2,<0.19"
