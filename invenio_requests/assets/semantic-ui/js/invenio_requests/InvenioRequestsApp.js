@@ -1,4 +1,4 @@
-import { InvenioRequestsAPI, RequestLinkExtractor } from "./api/api";
+import { InvenioRequestsTimelineAPI, RequestLinkExtractor } from "./api/api";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { configureStore } from "./store";
@@ -10,7 +10,7 @@ export class InvenioRequestsApp extends Component {
   constructor(props) {
     super(props);
     const { api, request } = this.props;
-    const defaultApi = new InvenioRequestsAPI(
+    const defaultApi = new InvenioRequestsTimelineAPI(
       new RequestLinkExtractor(request.links)
     );
 
@@ -19,6 +19,7 @@ export class InvenioRequestsApp extends Component {
     const appConfig = {
       "apiClient": apiClient,
       "request": request,
+      "refreshIntervalMs": 5000,
     };
     this.store = configureStore(appConfig);
   }
@@ -43,4 +44,5 @@ InvenioRequestsApp.propTypes = {
 
 InvenioRequestsApp.defaultProps = {
   overriddenCmps: { },
+  api: null,
 };

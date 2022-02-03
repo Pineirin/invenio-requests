@@ -1,1 +1,1 @@
-export { RequestLinkExtractor, InvenioRequestsAPI } from "./api";
+export { RequestLinkExtractor, InvenioRequestsTimelineAPI } from "./api";

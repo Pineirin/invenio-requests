@@ -1,8 +1,10 @@
+import RequestHeader from "./request/RequestHeader";
+import RequestMetadata from "./request/RequestMetadata";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Overridable from "react-overridable";
 import { Container, Grid, Tab, Header, Image } from "semantic-ui-react";
-import { Timeline } from './timeline';
+import { Timeline } from "./timeline";
 
 class RequestDetails extends Component {
   get menuPanes() {
@@ -18,9 +20,7 @@ class RequestDetails extends Component {
                   <Timeline />
                 </Grid.Column>
                 <Grid.Column width={3}>
-                  <Header as="h4">Requester</Header>
-                  <Image src="/static/images/placeholder.png" avatar rounded />
-                  <span>{request.created_by.full_name}</span>
+                  <RequestMetadata request={request} />
                 </Grid.Column>
               </Grid>
             </Container>
@@ -32,9 +32,13 @@ class RequestDetails extends Component {
   }
 
   render() {
+    const { request } = this.props;
     return (
       <Overridable id="InvenioRequests.RequestDetails.layout" {...this.props}>
-        <Tab panes={this.menuPanes} />
+        <>
+          <RequestHeader request={request} />
+          <Tab panes={this.menuPanes} />
+        </>
       </Overridable>
     );
   }

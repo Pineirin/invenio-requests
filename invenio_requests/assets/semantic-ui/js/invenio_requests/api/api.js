@@ -10,7 +10,7 @@ export class RequestLinkExtractor {
 
   get timeline () {
     if (!this.links.timeline) {
-      throw TypeError("Timeline link missing from resource");
+      throw TypeError("Timeline link missing from resource.");
     }
     return this.links.timeline;
   };
@@ -30,7 +30,7 @@ export class RequestLinkExtractor {
   };
 }
 
-export class InvenioRequestsAPI {
+export class InvenioRequestsTimelineAPI {
   constructor(requestLinkExtractor) {
     this.links = requestLinkExtractor;
   }

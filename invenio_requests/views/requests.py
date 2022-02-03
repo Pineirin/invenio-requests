@@ -29,7 +29,11 @@ def requests_detail(request=None, pid_value=None):
         "full_name": "John Travolta"
     })
 
-    request_dict["topic"] = request._request.topic.resolve()
+    try:
+        request_dict["topic"] = request._request.topic.resolve()
+    except Exception:
+        pass
+    # end temporary block
 
     return render_template(
         "invenio_requests/details/index.html",
