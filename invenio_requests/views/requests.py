@@ -9,9 +9,11 @@
 """Request views module."""
 
 from flask import render_template
-
+from sqlalchemy.orm.exc import NoResultFound
+from flask import g
 from invenio_requests.views.decorators import pass_request
-
+from invenio_rdm_records.resources.serializers import UIJSONSerializer
+from invenio_rdm_records.proxies import current_rdm_records_service
 
 @pass_request
 def requests_detail(request=None, pid_value=None):
@@ -28,14 +30,24 @@ def requests_detail(request=None, pid_value=None):
         "avatar": "/static/images/placeholder.png",
         "full_name": "John Travolta"
     })
+    draft = None
+    request_dict["topic"] = request._request.topic.resolve()
+    record = request_dict["topic"]
+    draft = current_rdm_records_service.read_draft(id_=record["id"],
+                                                   identity=g.identity)
+    is_draft = draft._record.is_draft
+    permissions = draft.has_permissions_to(['edit', 'new_version', 'manage',
+                                            'update_draft', 'read_files']),
+    draft = UIJSONSerializer().serialize_object_to_dict(draft.data)
 
-    try:
-        request_dict["topic"] = request._request.topic.resolve()
-    except Exception:
-        pass
     # end temporary block
 
     return render_template(
-        "invenio_requests/details/index.html",
+        f"invenio_requests/{request_dict['type']}/index.html",
         request=request_dict,  # TODO: use serializer
+        record=draft,
+        is_preview=True,
+        is_draft=is_draft,
+        permissions=permissions,
+        files=[]
     )

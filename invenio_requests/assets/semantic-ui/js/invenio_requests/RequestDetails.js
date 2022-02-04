@@ -3,7 +3,7 @@ import RequestMetadata from "./request/RequestMetadata";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Overridable from "react-overridable";
-import { Container, Grid, Tab, Header, Image } from "semantic-ui-react";
+import { Container, Grid, Tab } from "semantic-ui-react";
 import { Timeline } from "./timeline";
 
 class RequestDetails extends Component {
@@ -36,8 +36,15 @@ class RequestDetails extends Component {
     return (
       <Overridable id="InvenioRequests.RequestDetails.layout" {...this.props}>
         <>
-          <RequestHeader request={request} />
-          <Tab panes={this.menuPanes} />
+          {/*<RequestHeader request={request} />*/}
+          <Grid stackable reversed="mobile">
+            <Grid.Column width={13}>
+              <Timeline />
+            </Grid.Column>
+            <Grid.Column width={3}>
+              <RequestMetadata request={request} />
+            </Grid.Column>
+          </Grid>
         </>
       </Overridable>
     );

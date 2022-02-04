@@ -1,3 +1,6 @@
+import {
+  RequestActions
+} from './request/RequestActions';
 import { InvenioRequestsTimelineAPI, RequestLinkExtractor } from "./api/api";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
@@ -29,6 +32,7 @@ export class InvenioRequestsApp extends Component {
     return (
       <OverridableContext.Provider value={overriddenCmps}>
         <Provider store={this.store}>
+          <RequestActions />
           <RequestDetails request={request} />
         </Provider>
       </OverridableContext.Provider>
