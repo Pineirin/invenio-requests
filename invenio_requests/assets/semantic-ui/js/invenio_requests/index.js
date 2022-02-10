@@ -18,6 +18,7 @@ const overriddenCmps = {
 ReactDOM.render(<InvenioRequestsApp request={request} overriddenCmps={overriddenCmps}/>, requestDetailsDiv);
 
 export { default as RequestDetails } from "./RequestDetails";
+export { default as RequestAction } from "./requestAction/RequestAction";
 export { default as Timeline } from "./timeline/TimelineFeed";
 export { default as TimelineEvent } from "./timeline/TimelineEvent";
 export { default as RequestMetadata } from "./request/RequestMetadata";

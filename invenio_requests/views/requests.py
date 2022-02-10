@@ -31,21 +31,27 @@ def requests_detail(request=None, pid_value=None):
         "full_name": "John Travolta"
     })
     draft = None
-    request_dict["topic"] = request._request.topic.resolve()
-    record = request_dict["topic"]
-    draft = current_rdm_records_service.read_draft(id_=record["id"],
-                                                   identity=g.identity)
-    is_draft = draft._record.is_draft
-    permissions = draft.has_permissions_to(['edit', 'new_version', 'manage',
-                                            'update_draft', 'read_files']),
-    draft = UIJSONSerializer().serialize_object_to_dict(draft.data)
+
+    try:
+        request_dict["topic"] = request._request.topic.resolve()
+        record = request_dict["topic"]
+        draft = current_rdm_records_service.read_draft(id_=record["id"],
+                                                    identity=g.identity)
+        is_draft = draft._record.is_draft
+        permissions = draft.has_permissions_to(['edit', 'new_version', 'manage',
+                                                'update_draft', 'read_files']),
+        draft = UIJSONSerializer().serialize_object_to_dict(draft.data)
+    except Exception:
+        record = None
+        is_draft = None
+        permissions = None
 
     # end temporary block
 
     return render_template(
         f"invenio_requests/{request_dict['type']}/index.html",
         request=request_dict,  # TODO: use serializer
-        record=draft,
+        record=record,
         is_preview=True,
         is_draft=is_draft,
         permissions=permissions,

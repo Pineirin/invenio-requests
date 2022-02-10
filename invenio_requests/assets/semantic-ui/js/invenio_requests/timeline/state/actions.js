@@ -14,7 +14,7 @@ export const fetchTimeline = (loadingState = true) => {
       type: IS_REFRESHING,
     });
     try {
-      const response = await config.apiClient.getTimeline();
+      const response = await config.requestsApi.getTimeline();
       dispatch({
         type: SUCCESS,
         payload: response.data,

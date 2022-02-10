@@ -39,5 +39,27 @@ export class InvenioRequestsTimelineAPI {
     return await http.get(this.links.timeline);
   };
 
+}
+
+export class ActionsApi {
+  constructor(links) {
+    this.links = links
+  }
+
+  acceptRequest = async (payload) => {
+    return await http.post(this.links.actions.accept, payload)
+  }
+
+  cancelRequest = async () => {
+    return http.post(this.links.actions.cancel);
+  }
+
+  declineRequest = async (payload) => {
+    return await http.post(this.links.actions.decline, payload)
+  }
+
+  expireRequest = async () => {
+    return await http.post(this.links.actions.expire)
+  }
 
 }
