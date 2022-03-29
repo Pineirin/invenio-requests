@@ -11,15 +11,21 @@
 
 from elasticsearch_dsl import Q
 from invenio_access.permissions import system_process
-from invenio_records_resources.services import RecordService
+from invenio_records_resources.services import RecordService, ServiceSchemaWrapper
 from invenio_records_resources.services.base.links import LinksTemplate
 from invenio_records_resources.services.uow import RecordCommitOp, unit_of_work
 
 from ...records.api import RequestEventType
+from ..schemas import RequestEventDumpSchema
 
 
 class RequestEventsService(RecordService):
     """Request Events service."""
+
+    @property
+    def event_dump_schema(self):
+        """Schema for creation."""
+        return ServiceSchemaWrapper(self, schema=RequestEventDumpSchema)
 
     @unit_of_work()
     def create(self, identity, request_id, data, uow=None):
@@ -56,6 +62,7 @@ class RequestEventsService(RecordService):
             identity,
             event,
             links_tpl=self.links_item_tpl,
+            schema=self.event_dump_schema
         )
 
     def read(self, identity, id_):
@@ -70,6 +77,7 @@ class RequestEventsService(RecordService):
             identity,
             record,
             links_tpl=self.links_item_tpl,
+            schema=self.event_dump_schema
         )
 
     @unit_of_work()
@@ -101,6 +109,7 @@ class RequestEventsService(RecordService):
             identity,
             event,
             links_tpl=self.links_item_tpl,
+            schema=self.event_dump_schema
         )
 
     @unit_of_work()
@@ -156,6 +165,7 @@ class RequestEventsService(RecordService):
                 context={"request_id": request_id, "args": params},
             ),
             links_item_tpl=self.links_item_tpl,
+            schema=self.event_dump_schema
         )
 
     # Utilities

@@ -44,6 +44,9 @@ class TimelineEvent extends Component {
     const commentHasBeenDeleted = !event.payload;
     const commentCanBeDeleted = event.payload;
 
+    const canDelete = event.permissions.can_delete_comment;
+    const canUpdate = event.permissions.can_update_comment;
+
     return (
       <Overridable id="TimelineEvent.layout" event={event}>
         <Feed.Event>
@@ -68,15 +71,19 @@ class TimelineEvent extends Component {
                   </Feed.Summary>
                 </Grid.Column>
                 <Grid.Column width={1}>
-                  {commentCanBeDeleted && (
+                  {commentCanBeDeleted && (canDelete || canUpdate) && (
                     <Dropdown icon="ellipsis horizontal">
                       <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => toggleEditMode()}>
-                          {i18next.t("Edit")}
-                        </Dropdown.Item>
-                        <Dropdown.Item onClick={() => deleteComment()}>
-                          {i18next.t("Delete")}
-                        </Dropdown.Item>
+                        {canUpdate && (
+                          <Dropdown.Item onClick={() => toggleEditMode()}>
+                            {i18next.t("Edit")}
+                          </Dropdown.Item>
+                        )}
+                        {canDelete && (
+                          <Dropdown.Item onClick={() => deleteComment()}>
+                            {i18next.t("Delete")}
+                          </Dropdown.Item>
+                        )}
                       </Dropdown.Menu>
                     </Dropdown>
                   )}

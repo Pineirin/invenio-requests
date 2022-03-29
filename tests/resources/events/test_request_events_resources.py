@@ -55,6 +55,8 @@ def test_simple_comment_flow(
             "self": f"https://127.0.0.1:5000/api/requests/{request_id}/comments/{comment_id}",  # noqa
             # "report": ""  # TODO
         },
+        "permissions": {"can_update_comment": True,
+                        "can_delete_comment": True},
         "revision_id": 1,
         "type": RequestEventType.COMMENT.value,
     }
@@ -99,6 +101,8 @@ def test_simple_comment_flow(
             "self": f"https://127.0.0.1:5000/api/requests/{request_id}/comments/{comment_id}",  # noqa
             # "report": ""  # TODO
         },
+        "permissions": {"can_update_comment": True,
+                        "can_delete_comment": True},
         "revision_id": 2,
         "type": RequestEventType.COMMENT.value,
     }
@@ -119,6 +123,9 @@ def test_simple_comment_flow(
     response = client.get(f"/requests/{request_id}/timeline", headers=headers)
     assert 200 == response.status_code
     assert 2 == response.json["hits"]["total"]
+    # User 2 cannot updated or delete the comment created by user 1
+    expected_json_1["permissions"] = {"can_update_comment": False,
+                                      "can_delete_comment": False}
     assert_api_response_json(expected_json_1, response.json["hits"]["hits"][0])
     expected_json_3 = {
         "created_by": {"user": "2"},
@@ -126,6 +133,8 @@ def test_simple_comment_flow(
         "links": {
             "self": f"https://127.0.0.1:5000/api/requests/{request_id}/comments/{comment_id}",  # noqa
         },
+        "permissions": {"can_update_comment": True,
+                        "can_delete_comment": True},
         "revision_id": 4,
         "type": RequestEventType.REMOVED.value,
     }
