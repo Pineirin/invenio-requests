@@ -7,8 +7,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Overridable from "react-overridable";
-import { Divider, Header, Image, Label, Icon } from "semantic-ui-react";
+import { Divider, Header, Image, Label } from "semantic-ui-react";
 import { i18next } from "@translations/invenio_requests/i18next";
+import RequestStatusIcon from "./RequestStatusIcon";
 
 class RequestMetadata extends Component {
   render() {
@@ -24,8 +25,7 @@ class RequestMetadata extends Component {
           <Label>{request.type}</Label>
           <Divider />
           <Header as="h4">{i18next.t("Status")}</Header>
-          {/* TODO state ICONS ?*/}
-          <Icon name="clock outline" />
+          <RequestStatusIcon status={request.status} />
           {request.status}
           {request.expires_at && (
             <>

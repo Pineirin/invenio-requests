@@ -13,6 +13,14 @@ import {
   TimelineDeclineEvent,
   TimelineExpireEvent,
 } from "./timelineEvents";
+import {
+  IconSubmitStatus,
+  IconDeleteStatus,
+  IconAcceptStatus,
+  IconDeclineStatus,
+  IconCancelStatus,
+  IconExpireStatus,
+} from "./request";
 
 const requestDetailsDiv = document.getElementById("request-detail");
 const request = JSON.parse(requestDetailsDiv.dataset.record);
@@ -25,6 +33,12 @@ const overriddenComponents = {
   "TimelineEvent.layout.A": TimelineAcceptEvent,
   "TimelineEvent.layout.E": TimelineExpireEvent,
   "TimelineEvent.layout.X": TimelineCancelEvent,
+  "RequestStatusIcon.layout.submitted": IconSubmitStatus,
+  "RequestStatusIcon.layout.deleted": IconDeleteStatus,
+  "RequestStatusIcon.layout.accepted": IconAcceptStatus,
+  "RequestStatusIcon.layout.declined": IconDeclineStatus,
+  "RequestStatusIcon.layout.cancelled": IconCancelStatus,
+  "RequestStatusIcon.layout.expired": IconExpireStatus,
 };
 
 ReactDOM.render(
