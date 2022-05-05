@@ -160,7 +160,7 @@ def test_timeline_links(
 
     expected_links = {
         # NOTE: Variations are covered in records-resources
-        "self": f"https://127.0.0.1:5000/api/requests/{request_id}/timeline?expand=False&page=1&size=25&sort=oldest"  # noqa
+        "self": f"https://127.0.0.1:5000/api/requests/{request_id}/timeline?expand=False&page=1&refresh=False&size=25&sort=oldest"  # noqa
     }
     assert expected_links == search_record_links
 

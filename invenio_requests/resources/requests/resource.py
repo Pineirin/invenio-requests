@@ -15,7 +15,7 @@ from flask_resources import resource_requestctx, response_handler, route
 from invenio_records_resources.resources import RecordResource
 from invenio_records_resources.resources.records.resource import (
     request_data,
-    request_expand_args,
+    request_extra_args,
     request_headers,
     request_search_args,
     request_view_args,
@@ -40,7 +40,7 @@ class RequestsResource(RecordResource):
             route("POST", routes["action"], self.execute_action),
         ]
 
-    @request_expand_args
+    @request_extra_args
     @request_search_args
     @request_view_args
     @response_handler(many=True)
@@ -54,7 +54,7 @@ class RequestsResource(RecordResource):
         )
         return hits.to_dict(), 200
 
-    @request_expand_args
+    @request_extra_args
     @request_view_args
     @response_handler()
     def read(self):
@@ -66,7 +66,7 @@ class RequestsResource(RecordResource):
         )
         return item.to_dict(), 200
 
-    @request_expand_args
+    @request_extra_args
     @request_headers
     @request_view_args
     @request_data
@@ -92,7 +92,7 @@ class RequestsResource(RecordResource):
         )
         return "", 204
 
-    @request_expand_args
+    @request_extra_args
     @request_view_args
     @request_headers
     @request_data

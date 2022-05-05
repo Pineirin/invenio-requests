@@ -22,7 +22,7 @@ from flask_resources import (
 )
 from invenio_records_resources.resources import RecordResource
 from invenio_records_resources.resources.records.resource import (
-    request_expand_args,
+    request_extra_args,
     request_headers,
 )
 from invenio_records_resources.resources.records.utils import es_preference
@@ -64,7 +64,7 @@ class RequestCommentsResource(RecordResource):
         ]
 
     @list_view_args_parser
-    @request_expand_args
+    @request_extra_args
     @data_parser
     @response_handler()
     def create(self):
@@ -80,7 +80,7 @@ class RequestCommentsResource(RecordResource):
         return item.to_dict(), 201
 
     @item_view_args_parser
-    @request_expand_args
+    @request_extra_args
     @response_handler()
     def read(self):
         """Read an event.
@@ -96,7 +96,7 @@ class RequestCommentsResource(RecordResource):
         return item.to_dict(), 200
 
     @item_view_args_parser
-    @request_expand_args
+    @request_extra_args
     @request_headers
     @data_parser
     @response_handler()
@@ -123,7 +123,7 @@ class RequestCommentsResource(RecordResource):
         return "", 204
 
     @list_view_args_parser
-    @request_expand_args
+    @request_extra_args
     @search_args_parser
     @response_handler(many=True)
     def search(self):
