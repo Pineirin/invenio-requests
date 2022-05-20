@@ -32,6 +32,9 @@ const request = JSON.parse(requestDetailsDiv.dataset.record);
 const defaultQueryParams = JSON.parse(
   requestDetailsDiv.dataset.defaultQueryConfig
 );
+const userAvatar = JSON.parse(
+  requestDetailsDiv.dataset.userAvatar
+);
 
 const overriddenComponents = {
   "TimelineEvent.layout.unknown": TimelineUnknownEvent,
@@ -54,6 +57,7 @@ ReactDOM.render(
     request={request}
     defaultQueryParams={defaultQueryParams}
     overriddenCmps={overriddenComponents}
+    userAvatar={userAvatar}
   />,
   requestDetailsDiv
 );

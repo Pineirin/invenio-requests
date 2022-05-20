@@ -6,8 +6,9 @@
 
 import FormattedInputEditor from "../components/FormattedInputEditor";
 import React from "react";
+import { Image } from "react-invenio-forms";
 import { SaveButton } from "../components/Buttons";
-import { Container, Message } from "semantic-ui-react";
+import { Grid, Message } from "semantic-ui-react";
 import PropTypes from "prop-types";
 import { i18next } from "@translations/invenio_requests/i18next";
 
@@ -17,15 +18,24 @@ const TimelineCommentEditor = ({
   setCommentContent,
   error,
   submitComment,
+  userAvatar,
 }) => {
   return (
     <div className="timeline-comment-editor-container">
       {error && <Message negative>{error}</Message>}
-      <FormattedInputEditor
-        data={commentContent}
-        onChange={(event, editor) => setCommentContent(editor.getData())}
-        minHeight="7rem"
-      />
+      <Grid>
+        <Grid.Column width={1}>
+          <Image src={userAvatar} alt="" aria-hidden={true} />
+        </Grid.Column>
+        <Grid.Column width={15}>
+          <FormattedInputEditor
+            data={commentContent}
+            onChange={(event, editor) => setCommentContent(editor.getData())}
+            minHeight="7rem"
+          />
+        </Grid.Column>
+      </Grid>
+
       <div className="text-align-right rel-mt-1">
         <SaveButton
           icon="send"
@@ -45,12 +55,14 @@ TimelineCommentEditor.propTypes = {
   setCommentContent: PropTypes.func.isRequired,
   error: PropTypes.string,
   submitComment: PropTypes.func.isRequired,
+  userAvatar: PropTypes.string,
 };
 
 TimelineCommentEditor.defaultProps = {
   commentContent: "",
   isLoading: false,
   error: "",
+  userAvatar: "",
 };
 
 export default TimelineCommentEditor;

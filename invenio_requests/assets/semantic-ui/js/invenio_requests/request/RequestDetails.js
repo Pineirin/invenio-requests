@@ -13,13 +13,13 @@ import { Timeline } from "../timeline";
 
 class RequestDetails extends Component {
   render() {
-    const { request } = this.props;
+    const { request, userAvatar } = this.props;
     return (
       <Overridable id="InvenioRequests.RequestDetails.layout" {...this.props}>
         <>
           <Grid stackable reversed="mobile">
             <Grid.Column mobile={16} tablet={12} computer={13}>
-              <Timeline />
+              <Timeline userAvatar={userAvatar} />
             </Grid.Column>
             <Grid.Column mobile={16} tablet={4} computer={3}>
               <RequestMetadata request={request} />
@@ -33,6 +33,11 @@ class RequestDetails extends Component {
 
 RequestDetails.propTypes = {
   request: PropTypes.object.isRequired,
+  userAvatar: PropTypes.string,
+};
+
+RequestDetails.defaultProps = {
+  userAvatar: "",
 };
 
 export default Overridable.component(

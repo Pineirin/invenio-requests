@@ -19,7 +19,7 @@ export class Request extends Component {
   }
 
   render() {
-    const { request, updateRequestAfterAction } = this.props;
+    const { request, updateRequestAfterAction, userAvatar } = this.props;
 
     return (
       <Overridable id="InvenioRequest.Request.layout">
@@ -28,7 +28,7 @@ export class Request extends Component {
             request={request}
             actionSuccessCallback={updateRequestAfterAction}
           />
-          <RequestDetails request={request} />
+          <RequestDetails request={request} userAvatar={userAvatar} />
         </Loader>
       </Overridable>
     );
@@ -39,6 +39,11 @@ Request.propTypes = {
   request: PropTypes.object.isRequired,
   initRequest: PropTypes.func.isRequired,
   updateRequestAfterAction: PropTypes.func.isRequired,
+  userAvatar: PropTypes.string,
+};
+
+Request.defaultProps = {
+  userAvatar: "",
 };
 
 export default Overridable.component("InvenioRequests.Request", Request);

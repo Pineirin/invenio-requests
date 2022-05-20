@@ -41,7 +41,8 @@ class TimelineFeed extends Component {
   };
 
   render() {
-    const { timeline, loading, error, setPage, size, page } = this.props;
+    const { timeline, loading, error, setPage, size, page, userAvatar } =
+      this.props;
     const { modalOpen, modalAction } = this.state;
 
     return (
@@ -67,7 +68,7 @@ class TimelineFeed extends Component {
                   totalLength={timeline.hits?.total}
                 />
               </Container>
-              <TimelineCommentEditor />
+              <TimelineCommentEditor userAvatar={userAvatar} />
               <DeleteConfirmationModal
                 open={modalOpen}
                 action={modalAction}
@@ -91,6 +92,11 @@ TimelineFeed.propTypes = {
   setPage: PropTypes.func.isRequired,
   page: PropTypes.number,
   size: PropTypes.number,
+  userAvatar: PropTypes.string,
+};
+
+TimelineFeed.defaultProps = {
+  userAvatar: "",
 };
 
 export default Overridable.component("TimelineFeed", TimelineFeed);

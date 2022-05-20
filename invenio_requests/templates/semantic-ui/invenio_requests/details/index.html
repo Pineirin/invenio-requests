@@ -46,6 +46,7 @@
     <div id="request-detail"
          data-record='{{ request | tojson }}'
          data-default-query-config='{{ dict(size=config["REQUESTS_TIMELINE_PAGE_SIZE"]) | tojson }}'
+         data-user-avatar='{{ user_avatar | tojson }}'
     >{# react app root #}</div>
     {%- endblock request_timeline %}
 
