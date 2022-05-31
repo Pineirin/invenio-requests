@@ -23,5 +23,5 @@ export const Request = connect(
   mapDispatchToProps
 )(RequestComponent);
 
-export * from "./IconStatus";
+export * from "./Status";
 export * from "./TypeLabel";

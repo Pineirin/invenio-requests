@@ -15,12 +15,12 @@ import {
   TimelineUnknownEvent,
 } from "./timelineEvents";
 import {
-  IconSubmitStatus,
-  IconDeleteStatus,
-  IconAcceptStatus,
-  IconDeclineStatus,
-  IconCancelStatus,
-  IconExpireStatus,
+  SubmitStatus,
+  DeleteStatus,
+  AcceptStatus,
+  DeclineStatus,
+  CancelStatus,
+  ExpireStatus,
 } from "./request";
 import { LabelTypeSubmission, LabelTypeInvitation } from "./request";
 import {
@@ -46,12 +46,12 @@ const overriddenComponents = {
   "TimelineEvent.layout.accepted": TimelineAcceptEvent,
   "TimelineEvent.layout.expired": TimelineExpireEvent,
   "TimelineEvent.layout.cancelled": TimelineCancelEvent,
-  "RequestStatusIcon.layout.submitted": IconSubmitStatus,
-  "RequestStatusIcon.layout.deleted": IconDeleteStatus,
-  "RequestStatusIcon.layout.accepted": IconAcceptStatus,
-  "RequestStatusIcon.layout.declined": IconDeclineStatus,
-  "RequestStatusIcon.layout.cancelled": IconCancelStatus,
-  "RequestStatusIcon.layout.expired": IconExpireStatus,
+  "RequestStatus.layout.submitted": SubmitStatus,
+  "RequestStatus.layout.deleted": DeleteStatus,
+  "RequestStatus.layout.accepted": AcceptStatus,
+  "RequestStatus.layout.declined": DeclineStatus,
+  "RequestStatus.layout.cancelled": CancelStatus,
+  "RequestStatus.layout.expired": ExpireStatus,
   "RequestTypeLabel.layout.community-submission": LabelTypeSubmission,
   "RequestTypeLabel.layout.community-invitation": LabelTypeInvitation,
   "RequestAction.button.cancel": RequestCancelButton,
@@ -63,11 +63,6 @@ const overriddenComponents = {
   "RequestActionModal.title.cancel": () => i18next.t("Cancel request"),
   "RequestActionModal.title.accept": () => i18next.t("Accept request"),
   "RequestActionModal.title.decline": () => i18next.t("Decline request"),
-  "RequestStatus.submitted": () => i18next.t("Submitted"),
-  "RequestStatus.accepted": () => i18next.t("Accepted"),
-  "RequestStatus.cancelled": () => i18next.t("Cancelled"),
-  "RequestStatus.declined": () => i18next.t("Declined"),
-  "RequestStatus.expired": () => i18next.t("Expired"),
 };
 
 ReactDOM.render(

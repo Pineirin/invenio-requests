@@ -11,7 +11,7 @@ import { Image } from "react-invenio-forms";
 import Overridable from "react-overridable";
 import { Divider, Header, Label } from "semantic-ui-react";
 import { timestampToRelativeTime } from "../utils";
-import RequestStatusIcon from "./RequestStatusIcon";
+import RequestStatus from "./RequestStatus";
 import RequestTypeLabel from "./RequestTypeLabel";
 
 const User = ({ user }) => (
@@ -100,10 +100,7 @@ class RequestMetadata extends Component {
           <Header as="h3" size="tiny">
             {i18next.t("Status")}
           </Header>
-          <RequestStatusIcon status={request.status} />
-          <Overridable id={`RequestStatus.${request.status}`}>
-            <>{request.status}</>
-          </Overridable>
+          <RequestStatus status={request.status} />
           <Divider />
 
           <Header as="h3" size="tiny">
