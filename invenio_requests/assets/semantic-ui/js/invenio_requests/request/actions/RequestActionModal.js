@@ -9,12 +9,13 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { Trans } from "react-i18next";
 import Overridable from "react-overridable";
-import { Button, Modal } from "semantic-ui-react";
+import { Modal } from "semantic-ui-react";
 import Error from "../../components/Error";
 import { CancelButton } from "../../components/Buttons";
+import { RequestActionButton } from "./RequestActionButton";
 
 export class RequestActionModal extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.cancelBtnRef = React.createRef();
   }
@@ -33,9 +34,22 @@ export class RequestActionModal extends Component {
   };
 
   render() {
-    const { action, handleActionClick, modalId, children, requestType } =
-      this.props;
-    const { modalOpen, loading, toggleModal, error, cleanError } = this.context;
+    const {
+      action,
+      handleActionClick,
+      modalId,
+      children,
+      requestType,
+    } = this.props;
+    const {
+      modalOpen,
+      loading,
+      toggleModal,
+      error,
+      cleanError,
+      className,
+      size,
+    } = this.context;
 
     const currentModalOpen = modalOpen[modalId];
 
@@ -73,19 +87,15 @@ export class RequestActionModal extends Component {
                 floated="left"
                 size="medium"
               />
-              <Overridable
-                id={`RequestActionModal.button.${action}`}
-                onClick={handleActionClick}
+              <RequestActionButton
+                action={action}
+                handleActionClick={handleActionClick}
                 loading={loading}
+                className={className}
+                size={size}
+                requestType={requestType}
               >
-                <Button
-                  onClick={handleActionClick}
-                  loading={loading}
-                  requestType={requestType}
-                >
-                  <>{action}</>
-                </Button>
-              </Overridable>
+              </RequestActionButton>
             </Modal.Actions>
           </Modal>
         )}

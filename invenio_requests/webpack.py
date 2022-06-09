@@ -26,7 +26,6 @@ requests = WebpackThemeBundle(
     themes={
         "semantic-ui": dict(
             entry={
-                "invenio-requests-theme": "./less/invenio_requests/theme.less",
                 "invenio-requests-base": "./js/invenio_requests/requestsAppInit.js",
             },
             dependencies={

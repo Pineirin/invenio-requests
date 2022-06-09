@@ -17,7 +17,7 @@ export const SubmitStatus = () => (
 
 export const DeleteStatus = () => (
   <div>
-    <Icon name="delete" />
+    <Icon name="trash" />
     <span>{i18next.t("Deleted")}</span>
   </div>
 );
@@ -31,14 +31,14 @@ export const AcceptStatus = () => (
 
 export const DeclineStatus = () => (
   <div>
-    <Icon name="user delete" />
+    <Icon name="times" />
     <span>{i18next.t("Declined")}</span>
   </div>
 );
 
 export const CancelStatus = () => (
   <div>
-    <Icon name="cancel" />
+    <Icon name="stop" />
     <span>{i18next.t("Cancelled")}</span>
   </div>
 );

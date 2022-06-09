@@ -35,9 +35,9 @@ export class RequestActionController extends Component {
         action,
         commentContent
       );
-      actionSuccessCallback(response.data);
       this.setState({ loading: false });
       this.toggleActionModal(action, false);
+      actionSuccessCallback(response.data);
     } catch (error) {
       console.error(error);
       this.setState({ loading: false, error: errorSerializer(error) });

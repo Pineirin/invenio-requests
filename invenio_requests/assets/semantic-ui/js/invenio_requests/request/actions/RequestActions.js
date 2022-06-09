@@ -19,7 +19,11 @@ export const RequestActions = ({ request }) => {
     >
       <>
         {actions.map((action) => (
-          <RequestAction action={action} key={action} requestType={request.type} />
+          <RequestAction
+            action={action}
+            key={action}
+            requestType={request.type}
+          />
         ))}
       </>
     </Overridable>

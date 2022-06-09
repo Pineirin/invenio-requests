@@ -54,11 +54,6 @@
   {% endblock request_body %}
 {% endblock page_body %}
 
-{% block css %}
-  {{ super() }}
-  {{ webpack['invenio-requests-theme.css'] }}
-{% endblock %}
-
 {% block javascript %}
   {{ super() }}
   {% include config.THEME_JAVASCRIPT_TEMPLATE %}

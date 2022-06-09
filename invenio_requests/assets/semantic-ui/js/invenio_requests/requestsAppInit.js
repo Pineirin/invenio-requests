@@ -27,7 +27,7 @@ import {
   RequestAcceptButton,
   RequestCancelButton,
   RequestDeclineButton,
-  RequestModalCancelButton,
+  RequestCancelButtonModal,
 } from "./components/Buttons";
 import { i18next } from "@translations/invenio_requests/i18next";
 
@@ -54,12 +54,12 @@ const overriddenComponents = {
   "RequestStatus.layout.expired": ExpireStatus,
   "RequestTypeLabel.layout.community-submission": LabelTypeSubmission,
   "RequestTypeLabel.layout.community-invitation": LabelTypeInvitation,
-  "RequestAction.button.cancel": RequestCancelButton,
-  "RequestAction.button.accept": RequestAcceptButton,
-  "RequestAction.button.decline": RequestDeclineButton,
-  "RequestActionModal.button.cancel": RequestModalCancelButton,
-  "RequestActionModal.button.accept": RequestAcceptButton,
-  "RequestActionModal.button.decline": RequestDeclineButton,
+  "RequestActionModalTrigger.accept.computer-tablet": RequestAcceptButton,
+  "RequestActionModalTrigger.decline.computer-tablet": RequestDeclineButton,
+  "RequestActionModalTrigger.cancel.computer-tablet": RequestCancelButton,
+  "RequestActionButton.cancel": RequestCancelButtonModal,
+  "RequestActionButton.accept": RequestAcceptButton,
+  "RequestActionButton.decline": RequestDeclineButton,
   "RequestActionModal.title.cancel": () => i18next.t("Cancel request"),
   "RequestActionModal.title.accept": () => i18next.t("Accept request"),
   "RequestActionModal.title.decline": () => i18next.t("Decline request"),

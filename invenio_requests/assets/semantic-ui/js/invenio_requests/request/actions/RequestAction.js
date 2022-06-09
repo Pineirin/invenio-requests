@@ -9,9 +9,9 @@ import FormattedInputEditor from "../../components/FormattedInputEditor";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Overridable from "react-overridable";
-import { Button, Divider, Modal, Message } from "semantic-ui-react";
+import { Divider, Modal, Message } from "semantic-ui-react";
 import { RequestActionModal } from "./RequestActionModal";
-import { Trans } from "react-i18next";
+import { RequestActionModalTrigger } from "./RequestActionModalTrigger";
 import { i18next } from "@translations/invenio_requests/i18next";
 
 export class RequestAction extends Component {
@@ -30,18 +30,14 @@ export class RequestAction extends Component {
     const { performAction } = this.context;
     const { action } = this.props;
     const { actionComment } = this.state;
-    return performAction(action, actionComment);
+    performAction(action, actionComment);
   };
 
   render() {
-    const { loading, performAction, toggleModal, error, modalOpen } = this.context;
+    const { loading, performAction, toggleModal, error, modalOpen } =
+      this.context;
     const { action, requestType } = this.props;
     const modalId = action;
-    const buttonAria = {
-      'aria-expanded': !!modalOpen[modalId],
-      'aria-haspopup': 'dialog',
-      'aria-controls': modalId
-    }
     return (
       <Overridable
         id="InvenioRequests.RequestAction.layout"
@@ -50,22 +46,26 @@ export class RequestAction extends Component {
         performAction={performAction}
       >
         <>
-          <Overridable
-            id={`RequestAction.button.${action}`}
-            onClick={() => toggleModal(modalId, true)}
-            loading={loading}
-            action={action}
-            requestType={requestType}
-            ariaAttributes={buttonAria}
-          >
-            <Button
-              onClick={() => toggleModal(modalId, true)}
+          <div className="computer tablet only inline">
+            <RequestActionModalTrigger
+              action={action}
               loading={loading}
-              {...buttonAria}
-            >
-              {action}
-            </Button>
-          </Overridable>
+              toggleModal={toggleModal}
+              modalOpen={modalOpen}
+              requestType={requestType}
+              device="computer-tablet"
+            />
+          </div>
+          <div className="mobile only">
+            <RequestActionModalTrigger
+              action={action}
+              loading={loading}
+              toggleModal={toggleModal}
+              modalOpen={modalOpen}
+              requestType={requestType}
+              device="mobile"
+            />
+          </div>
           <RequestActionModal
             action={action}
             handleActionClick={this.handleActionClick}

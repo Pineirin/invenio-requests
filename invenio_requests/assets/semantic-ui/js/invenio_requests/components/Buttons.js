@@ -18,6 +18,56 @@ export const SaveButton = (props) => (
   />
 );
 
+export const RequestDeclineButton = ({
+  onClick,
+  loading,
+  ariaAttributes,
+  size,
+  className,
+}) => {
+  return (
+    <Button
+      icon="cancel"
+      content={i18next.t("Decline")}
+      onClick={onClick}
+      loading={loading}
+      disabled={loading}
+      color="red"
+      size={size}
+      className={className}
+      {...ariaAttributes}
+    />
+  );
+};
+
+export const RequestAcceptButton = ({
+  onClick,
+  requestType,
+  loading,
+  ariaAttributes,
+  size,
+  className,
+}) => {
+  const requestIsCommunitySubmission = requestType === "community-submission";
+  const buttonText = requestIsCommunitySubmission
+    ? i18next.t("Accept and publish")
+    : i18next.t("Accept");
+  return (
+    <Button
+      icon="checkmark"
+      content={buttonText}
+      onClick={onClick}
+      color="green"
+      loading={loading}
+      disabled={loading}
+      size={size}
+      className={className}
+      {...ariaAttributes}
+    />
+  );
+};
+
+/* Cancel Buttons */
 export const CancelButton = React.forwardRef((props, ref) => {
   useEffect(() => {
     ref?.current?.focus();
@@ -31,57 +81,45 @@ export const CancelButton = React.forwardRef((props, ref) => {
       size="mini"
       {...props}
     />
-  )
+  );
 });
 
-export const RequestCancelButton = ({ onClick, loading, ariaAttributes }) => (
-  <Button
-    icon="cancel"
-    content={i18next.t("Cancel")}
-    onClick={onClick}
-    loading={loading}
-    disabled={loading}
-    {...ariaAttributes}
-  />
-);
-
-export const RequestDeclineButton = ({ onClick, loading, ariaAttributes }) => (
-  <Button
-    icon="cancel"
-    content={i18next.t("Decline")}
-    onClick={onClick}
-    loading={loading}
-    disabled={loading}
-    color="red"
-    {...ariaAttributes}
-  />
-);
-
-export const RequestAcceptButton = ({ onClick, requestType, loading, ariaAttributes }) => {
-  const requestIsCommunitySubmission = requestType === "community-submission";
-  const buttonText = requestIsCommunitySubmission
-    ? i18next.t("Accept and publish")
-    : i18next.t("Accept");
+export const RequestCancelButton = ({
+  onClick,
+  loading,
+  ariaAttributes,
+  size,
+  className,
+  color,
+  content = i18next.t("Cancel"),
+}) => {
   return (
     <Button
-      icon="checkmark"
-      content={buttonText}
+      icon="cancel"
+      content={content}
       onClick={onClick}
-      color="green"
       loading={loading}
       disabled={loading}
+      size={size}
+      className={className}
+      color={color}
       {...ariaAttributes}
     />
   );
 };
 
-export const RequestModalCancelButton = ({ onClick, loading }) => (
-  <Button
-    icon="cancel"
-    content={i18next.t("Cancel request")}
+export const RequestCancelButtonModal = ({
+  onClick,
+  loading,
+  ariaAttributes,
+  size,
+}) => (
+  <RequestCancelButton
     onClick={onClick}
     loading={loading}
-    disabled={loading}
+    size={size}
+    content={i18next.t("Cancel request")}
     color="red"
+    {...ariaAttributes}
   />
 );

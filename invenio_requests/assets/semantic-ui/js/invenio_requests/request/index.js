@@ -24,4 +24,5 @@ export const Request = connect(
 )(RequestComponent);
 
 export * from "./Status";
+export * from "./StatusLabel";
 export * from "./TypeLabel";
