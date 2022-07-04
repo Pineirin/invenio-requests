@@ -282,12 +282,14 @@ class RequestsService(RecordService):
             params,
             es_preference,
             permission_action=None,
-            extra_filter=Bool(
-                "should",
+            extra_filter=Q(
+                "bool",
                 should=[
-                    Q("term", **{"created_by.user": identity.id}),
                     Q("term", **{"receiver.user": identity.id}),
+                    Q("term", **{"created_by.user": identity.id}),
                 ],
+                must=[~Q("term", **{"status": "created"})],
+                minimum_should_match=1,
             ),
             **kwargs,
         ).execute()

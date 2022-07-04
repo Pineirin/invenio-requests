@@ -121,18 +121,34 @@ def test_update_request(app, identity_simple, submit_request, requests_service):
 
 
 def test_search_user_requests(
-    app, identity_simple, identity_simple_2, users, submit_request, requests_service
+    app,
+    identity_simple,
+    identity_simple_2,
+    users,
+    submit_request,
+    requests_service,
+    create_request,
 ):
     request = submit_request(identity_simple, receiver=users[2])
     request_id = request.id
     Request.index.refresh()
 
     # creator can see the requests
-    hits = requests_service.search_user_requests(identity_simple,).to_dict()[
+    hits = requests_service.search_user_requests(identity_simple).to_dict()["hits"][
         "hits"
-    ]["hits"]
+    ]
 
     assert str(request_id) in [h["id"] for h in hits]
+
+    # requests with created status are not returned to the user
+    previous_hits = len(hits)
+    create_request(identity_simple)
+    Request.index.refresh()
+    hits = requests_service.search_user_requests(identity_simple).to_dict()["hits"][
+        "hits"
+    ]
+
+    assert len(hits) == previous_hits
 
     # others cannot see the request
     hits = requests_service.search_user_requests(identity=identity_simple_2).to_dict()[
