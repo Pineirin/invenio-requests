@@ -26,11 +26,15 @@ import {
 import { LabelTypeSubmission, LabelTypeInvitation } from "./request";
 import {
   RequestAcceptButton,
-  RequestCancelButton,
   RequestDeclineButton,
-  RequestCancelButtonModal,
+  RequestCancelButton,
 } from "./components/Buttons";
 import { i18next } from "@translations/invenio_requests/i18next";
+import {
+  RequestAcceptModalTrigger,
+  RequestCancelModalTrigger,
+  RequestDeclineModalTrigger,
+} from "@js/invenio_requests/components/ModalTriggers";
 
 const requestDetailsDiv = document.getElementById("request-detail");
 const request = JSON.parse(requestDetailsDiv.dataset.record);
@@ -54,10 +58,13 @@ const overriddenComponents = {
   "RequestStatus.layout.expired": ExpireStatus,
   "RequestTypeLabel.layout.community-submission": LabelTypeSubmission,
   "RequestTypeLabel.layout.community-invitation": LabelTypeInvitation,
-  "RequestActionModalTrigger.accept.computer-tablet": RequestAcceptButton,
-  "RequestActionModalTrigger.decline.computer-tablet": RequestDeclineButton,
-  "RequestActionModalTrigger.cancel.computer-tablet": RequestCancelButton,
-  "RequestActionButton.cancel": RequestCancelButtonModal,
+  "RequestActionModalTrigger.accept":
+  RequestAcceptModalTrigger,
+  "RequestActionModalTrigger.decline":
+  RequestDeclineModalTrigger,
+  "RequestActionModalTrigger.cancel":
+  RequestCancelModalTrigger,
+  "RequestActionButton.cancel": RequestCancelButton,
   "RequestActionButton.accept": RequestAcceptButton,
   "RequestActionButton.decline": RequestDeclineButton,
   "RequestActionModal.title.cancel": () => i18next.t("Cancel request"),

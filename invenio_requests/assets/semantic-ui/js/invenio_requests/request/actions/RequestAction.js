@@ -46,26 +46,14 @@ export class RequestAction extends Component {
         performAction={performAction}
       >
         <>
-          <div className="computer tablet only inline">
-            <RequestActionModalTrigger
-              action={action}
-              loading={loading}
-              toggleModal={toggleModal}
-              modalOpen={modalOpen}
-              requestType={requestType}
-              device="computer-tablet"
-            />
-          </div>
-          <div className="mobile only">
-            <RequestActionModalTrigger
-              action={action}
-              loading={loading}
-              toggleModal={toggleModal}
-              modalOpen={modalOpen}
-              requestType={requestType}
-              device="mobile"
-            />
-          </div>
+          <RequestActionModalTrigger
+            action={action}
+            loading={loading}
+            toggleModal={toggleModal}
+            modalOpen={modalOpen}
+            requestType={requestType}
+          />
+
           <RequestActionModal
             action={action}
             handleActionClick={this.handleActionClick}

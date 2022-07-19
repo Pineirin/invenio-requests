@@ -8,24 +8,51 @@ import { RequestLinksExtractor } from "../../api";
 import React from "react";
 import Overridable from "react-overridable";
 import { RequestAction } from "./RequestAction";
+import { Dropdown } from "semantic-ui-react";
+import { AppMedia } from "@js/invenio_theme/Media";
 
 export const RequestActions = ({ request }) => {
   const actions = Object.keys(new RequestLinksExtractor(request).actions);
+  const { MediaContextProvider, Media } = AppMedia;
   return (
     <Overridable
-      id="InvenioRequests.RequestActions.layout"
+      id={`InvenioRequests.RequestActions.layout`}
       request={request}
       actions={actions}
     >
-      <>
-        {actions.map((action) => (
-          <RequestAction
-            action={action}
-            key={action}
-            requestType={request.type}
-          />
-        ))}
-      </>
+      <MediaContextProvider>
+        <Media greaterThanOrEqual="tablet" className="fresnel-inline-block">
+          {actions.map((action) => (
+            <RequestAction
+              action={action}
+              key={action}
+              requestType={request.type}
+            />
+          ))}
+        </Media>
+        <Media at="mobile">
+          <Dropdown
+            text="Actions"
+            icon="caret down"
+            floating
+            labeled
+            button
+            className="icon rel-mt-1"
+          >
+            <Dropdown.Menu>
+              {actions.map((action) => {
+                return (
+                  <RequestAction
+                    key={action}
+                    action={action}
+                    requestType={request.type}
+                  />
+                );
+              })}
+            </Dropdown.Menu>
+          </Dropdown>
+        </Media>
+      </MediaContextProvider>
     </Overridable>
   );
 };

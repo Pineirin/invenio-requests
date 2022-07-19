@@ -18,7 +18,6 @@ export class RequestActionModalTrigger extends Component {
       modalOpen,
       requestType,
       size,
-      device,
     } = this.props;
     const buttonAria = {
       "aria-expanded": !!modalOpen[action],
@@ -27,7 +26,7 @@ export class RequestActionModalTrigger extends Component {
     };
     return (
       <Overridable
-        id={`RequestActionModalTrigger.${action}.${device}`}
+        id={`RequestActionModalTrigger.${action}`}
         onClick={() => toggleModal(action, true)}
         loading={loading}
         action={action}
@@ -54,12 +53,6 @@ RequestActionModalTrigger.propTypes = {
   modalOpen: PropTypes.object.isRequired,
   requestType: PropTypes.string.isRequired,
   size: PropTypes.string,
-  device: PropTypes.string,
-};
-
-RequestActionModalTrigger.defaultProps = {
-  size: "small",
-  device: "",
 };
 
 export default Overridable.component(
