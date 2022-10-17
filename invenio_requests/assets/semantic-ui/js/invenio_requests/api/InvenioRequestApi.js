@@ -5,7 +5,7 @@
 // under the terms of the MIT License; see LICENSE file for more details.
 
 import _isEmpty from "lodash/isEmpty";
-import { http } from "./config";
+import { http } from "react-invenio-forms";
 
 export class RequestLinksExtractor {
   #urls;
