@@ -16,12 +16,12 @@ export const RequestActions = ({ request }) => {
   const { MediaContextProvider, Media } = AppMedia;
   return (
     <Overridable
-      id={`InvenioRequests.RequestActions.layout`}
+      id="InvenioRequests.RequestActions.layout"
       request={request}
       actions={actions}
     >
       <MediaContextProvider>
-        <Media greaterThanOrEqual="tablet" className="fresnel-inline-block">
+        <Media greaterThanOrEqual="tablet" className="media-inline-block">
           {actions.map((action) => (
             <RequestAction
               action={action}
@@ -30,7 +30,7 @@ export const RequestActions = ({ request }) => {
             />
           ))}
         </Media>
-        <Media at="mobile">
+        <Media lessThan="tablet">
           <Dropdown
             text="Actions"
             icon="caret down"
